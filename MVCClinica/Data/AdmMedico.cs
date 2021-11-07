@@ -32,6 +32,7 @@ namespace MVCClinica.Data
         public static void modificar(Medico medico)
         {
             context.Medicos.Attach(medico);
+            context.Entry(medico).State = EntityState.Modified;
             context.SaveChanges();
         }
     }
