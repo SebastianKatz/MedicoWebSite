@@ -5,37 +5,73 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Content/Main.css" rel="stylesheet" />
 </head>
 <body>
-    <p>@Html.ActionLink("Create New", "Create", "Opera")</p>
+    <p id="Create">@Html.ActionLink("Create New", "Create", "Opera")</p>
     <table>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Tittle)</th>
             <th>@Html.DisplayNameFor(model => model.Composer)</th>
             <th>@Html.DisplayNameFor(model => model.Year)</th>
-            <th>Details</th>
-            <th>Deletes</th>
+            <th>Detail</th>
+            <th>Delete</th>
+            <th>Edit</th>
         </tr>
+        <p id="Create">@Html.ActionLink("Todos", "Index", "Opera")</p>
         @foreach (var item in Model)
         {
-    <tr>
-        <td>@Html.DisplayFor(modelItem => item.Tittle)</td>
-        <td>@Html.DisplayFor(modelItem => item.Composer)</td>
-        <td>@Html.DisplayFor(modelItem => item.Year)</td>
-        <td>
-            @Html.ActionLink("Detail", "Detail", new { id = item.OperaId })
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.OperaId })
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.OperaId })
-        </td>
-    </tr>
-        }
+<tr>
+    <td>@Html.DisplayFor(modelItem => item.Tittle)</td>
+    <td>@Html.RouteLink(item.Composer, new { controller = "Opera", action = "Listar", composer = item.Composer })</td>
+    <td>@Html.DisplayFor(modelItem => item.Year)</td>
+    <td>
+        @Html.ActionLink("Detail", "Detail", new { id = item.OperaId })
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "Delete", new { id = item.OperaId })
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.OperaId })
+    </td>
+</tr>
+}
     </table>
+    @section SideBarIzquierda
+    {
+        <h3>Operas de Mozart:</h3>
+        <div id="Links">
+            <ul>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=6DmZHK4HAkc">Bodas de Fígaro</a>
+                </li>
 
+                <li>
+                    <a href="https://www.youtube.com/watch?v=SJI43UaGeCc">La Flauta Mágica</a>
+                </li>
 
+                <li>
+                    <a href="https://www.youtube.com/watch?v=jzUJWDU_1Rg">Symphony nº 40</a>
+                </li>
+            </ul>
+        </div>
+    }
+    @section SideBarDerecha
+    {
+        <div id="img1">
+
+            <img src="~/Imagenes/mozart.jpg" />
+            <a href="https://es.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart">Wolfgang Amadeus Mozart</a>
+        </div>
+        <div id="img2">
+            <img src="~/Imagenes/bach.jpg" />
+            <a href="https://es.wikipedia.org/wiki/Johann_Sebastian_Bach">Johann Sebastian Bach</a>
+            
+        </div>
+        <div id="img3">
+            <img src="~/Imagenes/bethoven.jpg" />
+            <a href="https://es.wikipedia.org/wiki/Ludwig_van_Beethoven">Ludwig van Beethoven</a>
+        </div>
+    }
 </body>
-
 </html>

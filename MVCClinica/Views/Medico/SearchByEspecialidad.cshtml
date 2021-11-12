@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchByEspecialidad</title>
+</head>
+<body>
+    <div>
+        <p>Buscar por especialidad</p>
+
+        @using (Html.BeginForm("IndexPorEspecialidad", "Medico", FormMethod.Get))
+        {
+            @Html.TextBox("especialidad")
+
+            <input type="submit" value="Get" />
+        }
+
+        <p>Buscar por nombre y apellido</p>
+
+        @using (Html.BeginForm("IndexPorNombreApellido", "Medico", FormMethod.Get))
+        {
+            @Html.TextBox("nombre")
+            @Html.TextBox("apellido")
+
+
+            <input type="submit" value="Get" />
+
+        </div>
+</body>
+</html>

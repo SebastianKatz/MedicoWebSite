@@ -1,4 +1,5 @@
 ﻿using MVCClinica.Data;
+using MVCClinica.Filters;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,6 +11,7 @@ namespace MVCClinica.Controllers
 {
     public class MedicoController : Controller
     {
+        private static DBMedicosContext context = new DBMedicosContext();
         public ActionResult Index()
         {
             return View("Index", AdmMedico.listar());
@@ -22,6 +24,7 @@ namespace MVCClinica.Controllers
             return View("Create", medico);
         }
 
+        [FiltroGeneral]
         [HttpPost]
         public ActionResult Create(Medico medico)
         {
@@ -38,7 +41,7 @@ namespace MVCClinica.Controllers
             Medico medico = AdmMedico.buscar(id);
             if (medico != null)
             {
-                return View("Detail");
+                return View("Detail", medico);
             }
             else
             {
@@ -93,5 +96,24 @@ namespace MVCClinica.Controllers
             }
             return View("Edit", medico);
         }
+
+
+
+        public ActionResult SearchByEspecialidad(int especialidad)
+        {
+            if (especialidad == 0)
+                return RedirectToAction("Index");
+
+            return View("Index", AdmMedico.ListarEspecialidad(especialidad));
+        }
+
+
+        public ActionResult IndexPorNombreApellido(string nombre, string apellido)
+        {
+            var medicos = (from m in context.Medicos where m.Nombre == nombre && m.Apellido == apellido select m).ToList();
+
+            return View("Index", medicos);
+        }
+
     }
 }

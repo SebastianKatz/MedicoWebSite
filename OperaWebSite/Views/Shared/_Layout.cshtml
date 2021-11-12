@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Main.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <span id="banner">
+        </span>
+        <div id="Login">
+            <h2>Login</h2>
+        </div>
+
+    </header>
+
+
+    <div id="menu">
+        <ul>
+            <li>
+                <a href="#">Inicio</a>
+            </li>
+
+            <li>
+                <a href="#">Opera</a>
+            </li>
+
+            <li>
+                <a href="#">Empleados</a>
+            </li>
+        </ul>
+    </div>
+
+    <main>
+        <div id="sidebarizquierda">
+
+            @if (IsSectionDefined("SideBarIzquierda"))
+            {
+@RenderSection("SideBarIzquierda") }
+            else
+            {
+<h3>Contactanos: </h3>
+
+                <p><h4>Direc: </h4>Cerrito 628, Ciudad Autónoma de Buenos Aires, República Argentina.</p>
+                <p><h4>Tel: </h4>4378-7100</p>            }
+
+        </div>
+
+        <div id="content">
+            @RenderBody()
+        </div>
+
+        <div id="sidebarderecha">
+            @if (IsSectionDefined("SideBarDerecha"))
+            {
+@RenderSection("SideBarDerecha") }
+            else
+            {
+<h3>Imagenes del Exterior del Teatro</h3>
+                <img src="~/Imagenes/teatro-ext1.jpg" />
+                <img src="~/Imagenes/teatro-ext2.jpg" />
+                <img src="~/Imagenes/teatro-ext3.jpg" />}
+        </div>
+
+
+
+    </main>
+
+
+    <div id="footer">
+        <p>contacto@teatroColon.com</p>
+    </div>
+
+
+</body>
+</html>

@@ -6,37 +6,39 @@ using System.Web.Mvc;
 using OperaWebSite.Models;
 using OperaWebSite.Data;
 using System.Data.Entity;
+using System.Diagnostics;
+using OperaWebSite.Filters;
 
 namespace OperaWebSite.Controllers
 {
+    [MyFilterAction]
     public class OperaController : Controller
     {
-        // Crear instancia del DbContext
-
+        //Crear instancia del dbcontext
         private OperaDbContext context = new OperaDbContext();
 
         // GET: Opera o /Opera/Index
         public ActionResult Index()
         {
-            // Traer todas las Operas usando EF
-            var operas = context.Operas.ToList();
-            // El controller retorna una vista "Index" con la lista de operas
+            var operas = context.Operas.ToList(); 
             return View("Index", operas);
         }
 
-        // Creamos dos metodos para la insercion de la opera en la DB
-
-        // Primer create por GET para retornar la vista de registro
-
-        [HttpGet] // El GET es implicito pero se puede esecificar
-        public ActionResult Create()
+        public ActionResult Listar(string composer)
         {
-            Opera opera = new Opera();
-            return View("Create", opera);
+            var operas = (from o in context.Operas
+                          where o.Composer == composer
+                          select o).ToList();
+            return View("Index", operas);
         }
 
-        //Seg                                                                                                     undo Create es por POST para insertar la nueva opera en la base
-        // cuando el usuario en la vista Create hace click en enviar
+        [HttpGet] 
+        public ActionResult Create()
+        {
+            Opera opera = new Opera(); 
+
+            return View("Create", opera);
+        }
 
         [HttpPost]
         public ActionResult Create(Opera opera)
@@ -46,16 +48,19 @@ namespace OperaWebSite.Controllers
                 context.Operas.Add(opera);
                 context.SaveChanges();
                 return RedirectToAction("Index");
+
             }
             return View("Create", opera);
         }
 
+
+        // Opera/Detail/id
         public ActionResult Detail(int id)
         {
             Opera opera = context.Operas.Find(id);
-            if(opera != null)
+            if (opera != null)
             {
-                return View("Detail");
+                return View("Detail", opera);
             }
             else
             {
@@ -63,9 +68,11 @@ namespace OperaWebSite.Controllers
             }
         }
 
+
         public ActionResult Delete(int id)
         {
             Opera opera = context.Operas.Find(id);
+
             if (opera != null)
             {
                 return View("Delete", opera);
@@ -76,9 +83,12 @@ namespace OperaWebSite.Controllers
             }
         }
 
-        [HttpPost]
+
+        //Opera/Delete
+        [HttpPost] 
+
         [ActionName("Delete")]
-        public ActionResult DeleteConfirm(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Opera opera = context.Operas.Find(id);
             context.Operas.Remove(opera);
@@ -86,7 +96,6 @@ namespace OperaWebSite.Controllers
             return RedirectToAction("Index");
         }
 
-        //GET /Opera/Edit/id
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -100,6 +109,7 @@ namespace OperaWebSite.Controllers
                 return HttpNotFound();
         }
 
+
         [HttpPost]
         [ActionName("Edit")]
         public ActionResult EditConfirmed(Opera opera)
@@ -108,12 +118,10 @@ namespace OperaWebSite.Controllers
             {
                 context.Entry(opera).State = EntityState.Modified;
                 context.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-
             return View("Edit", opera);
         }
-
-
     }
 }

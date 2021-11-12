@@ -105,6 +105,7 @@
     <Compile Include="Data\AdmMedico.cs" />
     <Compile Include="Data\DBMedicosContext.cs" />
     <Compile Include="Data\Medico.cs" />
+    <Compile Include="Filters\FiltroGeneral.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -118,6 +119,7 @@
     <Content Include="Views\Medico\Detail.cshtml" />
     <Content Include="Views\Medico\Delete.cshtml" />
     <Content Include="Views\Medico\Edit.cshtml" />
+    <Content Include="Views\Medico\SearchByEspecialidad.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

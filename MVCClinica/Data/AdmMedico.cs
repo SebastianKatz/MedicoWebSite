@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MVCClinica.Data
 {
@@ -34,6 +35,13 @@ namespace MVCClinica.Data
             context.Medicos.Attach(medico);
             context.Entry(medico).State = EntityState.Modified;
             context.SaveChanges();
+        }
+        public static List<Medico> ListarEspecialidad(int especialidad)
+        {
+            List<Medico> medicosEspecialidad = (from o in context.Medicos
+                                                where o.EspecialidadId == especialidad
+                                                select o).ToList();
+            return medicosEspecialidad;
         }
     }
 }

@@ -1,33 +1,36 @@
 ﻿@model OperaWebSite.Models.Opera
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
+    <link href="~/Content/Main.css" rel="stylesheet" />
 </head>
 <body>
     @using (Html.BeginForm("Create", "Opera", FormMethod.Post))
     {
-        <div>
-            @Html.LabelFor(model => model.Tittle)
-            @Html.EditorFor(model => model.Tittle)
-            @Html.ValidationMessageFor(model => model.Tittle)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.Composer)
-            @Html.EditorFor(model => model.Composer)
-            @Html.ValidationMessageFor(model => model.Composer)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.Year)
-            @Html.EditorFor(model => model.Year)
-            @Html.ValidationMessageFor(model => model.Year)
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    }
-    @Html.ActionLink("Back to List", "Index", "Opera")
+<h3>Ingrese Nueva Obra</h3>
+                <div id="title">
+                    @Html.LabelFor(model => model.Tittle)
+                    @Html.EditorFor(model => model.Tittle)
+                    @Html.ValidationMessageFor(model => model.Tittle)
+                </div>
+                <div id="composer">
+                    @Html.LabelFor(model => model.Composer)
+                    @Html.EditorFor(model => model.Composer)
+                    @Html.ValidationMessageFor(model => model.Composer)
+                </div>
+                <div id="year">
+                    @Html.LabelFor(model => model.Year)
+                    @Html.EditorFor(model => model.Year)
+                    @Html.ValidationMessageFor(model => model.Year)
+                </div>
+
+                <p id="boton">
+                    <input type="submit" value="Create" />
+                </p>}
+    <div id="actionlink"> @Html.ActionLink("Back to List", "Index", "Opera")</div>
 </body>
 </html>

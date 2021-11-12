@@ -94,14 +94,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Main.css" />
     <Content Include="Global.asax" />
+    <Content Include="Imagenes\bach.jpg" />
+    <Content Include="Imagenes\banner.jpg" />
+    <Content Include="Imagenes\bethoven.jpg" />
+    <Content Include="Imagenes\mozart.jpg" />
+    <Content Include="Imagenes\teatro-ext1.jpg" />
+    <Content Include="Imagenes\teatro-ext2.jpg" />
+    <Content Include="Imagenes\teatro-ext3.jpg" />
+    <Content Include="Imagenes\teatro1.jpg" />
+    <Content Include="Imagenes\teatro2.jpg" />
+    <Content Include="Imagenes\teatro3.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OperaController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Data\OperaDbContext.cs" />
     <Compile Include="Data\OperasInitializer.cs" />
+    <Compile Include="Filters\MyFilterAction.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -126,6 +140,12 @@
     <Content Include="Views\Opera\Detail.cshtml" />
     <Content Include="Views\Opera\Delete.cshtml" />
     <Content Include="Views\Opera\Edit.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Test\Login.cshtml" />
+    <Content Include="Views\Test\SearchByTittle.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

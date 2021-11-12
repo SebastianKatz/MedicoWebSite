@@ -14,6 +14,13 @@ namespace OperaWebSite
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "Buscar",
+               url: "Opera/buscar/{composer}",
+               defaults: new { controller = "Opera", action = "Listar" }
+           );
+
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

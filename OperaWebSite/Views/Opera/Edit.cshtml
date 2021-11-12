@@ -7,32 +7,29 @@
     <title>Edit</title>
 </head>
 <body>
-
     @using (Html.BeginForm("Edit", "Opera", FormMethod.Post))
     {
-        @Html.HiddenFor(model => model.OperaId)
-        <div>
-            @Html.LabelFor(model => model.Tittle)
-            @Html.EditorFor(model => model.Tittle)
-            @Html.ValidationMessageFor(model => model.Tittle)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.Composer)
-            @Html.EditorFor(model => model.Composer)
-            @Html.ValidationMessageFor(model => model.Composer)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.Year)
-            @Html.EditorFor(model => model.Year)
-            @Html.ValidationMessageFor(model => model.Year)
-        </div>
+@Html.HiddenFor(model => model.OperaId)
+                <div>
+                    @Html.LabelFor(model => model.Tittle)
+                    @Html.EditorFor(model => model.Tittle)
+                    @Html.ValidationMessageFor(model => model.Tittle)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Composer)
+                    @Html.EditorFor(model => model.Composer)
+                    @Html.ValidationMessageFor(model => model.Composer)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Year)
+                    @Html.EditorFor(model => model.Year)
+                    @Html.ValidationMessageFor(model => model.Year)
+                </div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    }
+                <p>
+                    <input type="submit" value="Save" />
+                </p>}
     @Html.ActionLink("Back to List", "Index", "Opera")
-
 </body>
 </html>
 
